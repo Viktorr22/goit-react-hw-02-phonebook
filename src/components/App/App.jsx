@@ -1,46 +1,29 @@
 import { Component } from 'react';
-import { Form, Section } from 'components';
-import { nanoid } from 'nanoid'
+import { Form, Section,  ContactList} from 'components';
+
 
 export class App extends Component {
     state = {
-        contacts: [],
-        name: '',
-        number: '',
+        contacts: [
+            {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+            {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
+            {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
+            {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},],
+     
     };
 
-    handleInputChange = event => {
-        // console.log(event.currentTarget); 
-        // console.log(event.currentTarget.name); 
-        // console.log(event.currentTarget.value);       
-        this.setState({[event.currentTarget.name]: event.currentTarget.value })        
-    }
-
-    handleSubmit = event => {
-        event.preventDefault();
-        console.log(this.state);
-        this.reset();
-
-    }
-
-    reset = () => {
-        this.setState({ name: '', number: '' });
-    };
-
-    addInputId = nanoid();
-
+    formSubmitHandler = data => {
+        console.log(data);
+        this.setState({ contacts: [data] })
+        console.log(this.state.contacts);
+    }   
 
 
     render() {
         return (
             <Section title={'Phonebook'}>            
-                <Form
-                    contactname={this.state.name}
-                    number={this.state.number}
-                    onchange={this.handleInputChange}
-                    onsubmit={this.handleSubmit}
-                    generateId={this.addInputId}
-                />
+                <Form onSubmit={this.formSubmitHandler} />
+                <ContactList contacts={ this.state.contacts} />
             </Section>      
         )
     }
