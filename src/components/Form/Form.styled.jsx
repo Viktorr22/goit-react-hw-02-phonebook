@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const FormBox = styled.form`
 margin-top: 30px;
+margin-bottom: 30px;
 display:flex;
 flex-direction: column;
 align-items: flex-start;

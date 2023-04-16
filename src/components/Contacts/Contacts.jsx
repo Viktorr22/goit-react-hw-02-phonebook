@@ -1,15 +1,26 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import { ContactMarkupList, ContactMarkupItem, ContactMarkupButton } from './Contact.styled';
 
 export function ContactList ({contacts, onDeleteContact}) {
     return (       
-            <ul>
+            <ContactMarkupList>
                 {contacts.map(({ id, name, number }) => (
-                    <li key={id}>
+                    <ContactMarkupItem key={id}>
                         {name}: {number}
-                        <button onClick = {() => onDeleteContact(id)}>Delete</button>
-                    </li>
+                        <ContactMarkupButton onClick = {() => onDeleteContact(id)}>Delete</ContactMarkupButton>
+                    </ContactMarkupItem>
                   )            
                 )}
-            </ul>      
+            </ContactMarkupList>      
     );
 }
+
+ContactList.propTypes = {
+    contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })),
+    onDeleteContact: PropTypes.func.isRequired,    
+};

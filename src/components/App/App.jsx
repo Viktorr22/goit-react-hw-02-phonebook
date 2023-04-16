@@ -15,14 +15,15 @@ export class App extends Component {
      
     };  
 
-    formSubmitHandler = data => {         
+    formSubmitHandler = data => {  
+        const { name, number } = data;
         const contact = {
             id: nanoid(),
-            name: data.name,
-            number: data.number,            
+            name,
+            number,            
         }
 
-        if (this.state.contacts.find(contact => contact.name === data.name)) {
+        if (this.state.contacts.find(contact => contact.name === name)) {
             alert(`${contact.name} is already in contacts.`);
             return;
         }
@@ -52,14 +53,16 @@ export class App extends Component {
     render() {       
      
         const filteredContact = this.getFilteredContact();
+        const { formSubmitHandler, changeFilter, deleteContact } = this;
+        const { filter } = this.state;
 
         return (
             <Section>
                 <h1>Phonebook</h1>
-                <Form onSubmit={this.formSubmitHandler} />
+                <Form onSubmit={formSubmitHandler} />
                 <h2>Contacts</h2>
-                <Filter text = {this.state.filter} onChangeFilter={this.changeFilter} />
-                <ContactList contacts={filteredContact} onDeleteContact={this.deleteContact} />
+                <Filter text = {filter} onChangeFilter={changeFilter} />
+                <ContactList contacts={filteredContact} onDeleteContact={deleteContact} />
             </Section>      
         )
     }
