@@ -1,7 +1,8 @@
 // import { Formik } from 'formik';
 import { Component } from 'react';
 import { FormBox } from './Form.styled';
-// import { nanoid } from 'nanoid'
+
+
 
 export class Form extends Component {
        state = {      
@@ -14,18 +15,14 @@ export class Form extends Component {
     }
 
     handleSubmit = event => {
-        event.preventDefault();
-        // console.log(this.state);
+        event.preventDefault();      
         this.props.onSubmit(this.state);
         this.reset();
-
     }
 
     reset = () => {
         this.setState({ name: '', number: '' });
     };
-
-    // addInputId = nanoid();
 
     render() {
 
@@ -56,10 +53,7 @@ export class Form extends Component {
                     />
                 </label>
                 <button type='submit'>Add contact</button>
-            </FormBox>
-               
-    
-       
+            </FormBox>       
         )
     }
 }
