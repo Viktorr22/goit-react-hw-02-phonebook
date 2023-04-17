@@ -16,6 +16,12 @@ export class App extends Component {
   formSubmitHandler = data => {
     const { name, number } = data;
 
+    const contact = {
+      id: nanoid(),
+      name,
+      number,
+    };
+
     if (
       this.state.contacts.find(
         contact => contact.name.toLowerCase() === name.toLowerCase()
@@ -24,12 +30,6 @@ export class App extends Component {
       alert(`${contact.name} is already in contacts.`);
       return;
     }
-
-    const contact = {
-      id: nanoid(),
-      name,
-      number,
-    };
 
     this.setState(prevState => ({
       contacts: [...prevState.contacts, contact],
