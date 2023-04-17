@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { ContactMarkupList, ContactMarkupItem, ContactMarkupButton } from './Contact.styled';
 
-export function ContactList ({contacts, onDeleteContact}) {
-    return (       
+export function ContactList({ contacts, onDeleteContact }) {   
+    return (   
             <ContactMarkupList>
                 {contacts.map(({ id, name, number }) => (
                     <ContactMarkupItem key={id}>
@@ -11,7 +11,9 @@ export function ContactList ({contacts, onDeleteContact}) {
                     </ContactMarkupItem>
                   )            
                 )}
-            </ContactMarkupList>      
+            </ContactMarkupList>
+
+             
     );
 }
 
